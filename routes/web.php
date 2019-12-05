@@ -39,3 +39,5 @@ Route::prefix('clerk')->group(function() {
     Route::post('/login', 'Auth\ClerkLoginController@login')->name('clerk.login.submit');
     Route::get('/', 'ClerkController@index')->name('clerk.dashboard');
 });
+
+Route::post('/search','ClerkController@searchFunction');

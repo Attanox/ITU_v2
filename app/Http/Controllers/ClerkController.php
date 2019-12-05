@@ -76,4 +76,18 @@ class ClerkController extends Controller
                         ->with('success', 'Priestupok priradený.')
                         ->with('pending', $pending);
     }
+
+    public function searchFunction(Request $request){
+        $q = $request->input( 'q' );
+        $user = DB::table('users')->where('name','LIKE','%'.$q.'%')->get();
+
+        $pending = DB::table('vehicles')
+                        ->where('registered', '=', 'pending')
+                        ->get();
+
+        if(count($user) > 0)
+            return view('clerk')->with('user', $user)->with('pending', $pending);
+        else
+            return view ('clerk')->with('failure','Nenašli sme nič skúste znova !')->with('pending', $pending);
+    }
 }

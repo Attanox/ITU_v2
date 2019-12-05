@@ -11,6 +11,33 @@
             @endif
             
             <h3>Hello Admin</h3>
+
+            {!! Form::open(['action' => 'ClerkController@searchFunction', 'method' => 'POST', 'role' => 'search', 'enctype' => 'multipart/form-data']) !!}
+                <div class="input-group">
+                    {!! Form::text('q', '', ['class' => 'form-control', 'placeholder' => 'Search Users']) !!}
+                    {!! Form::submit('Search', ['class' => 'btn btn-danger rounded-0 rounded-right']) !!}
+                </div>
+            {!! Form::close() !!}
+
+            @if(isset($user))
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Name</th>
+                            <th>Email</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($user as $u)
+                        <tr>
+                            <td>{{$u->name}}</td>
+                            <td>{{$u->op}}</td>
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            @endif
+
             @foreach ( $pending as $p )
                 <p>{{ $p->plate }}</p>
             @endforeach

@@ -25,7 +25,7 @@
                         </a>
 
                         <div class="text-center dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                            <a href="/home" class="dropdown-item">Hlavný Panel</a>
+                            <a href="/clerk" class="dropdown-item">Hlavný Panel</a>
                             <a class="dropdown-item" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
