@@ -16684,6 +16684,23 @@ body {
 
 /***************************** INDEX ******************************************/
 
+/***************************** PAYMENT ****************************************/
+
+.accordionContainer {
+  margin: 2em;
+  height: 25em;
+}
+
+#tatraPayButton {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+#vubPayButton {
+  background-color: #F26F20;
+  color: #ffffff;
+}
+
 .status {
   border-radius: 50%;
   display: flex;
@@ -16728,6 +16745,19 @@ body {
 .row .__thirds {
   flex: 0 0 50%;
   max-width: 49%;
+}
+
+.__rounded-left-0 {
+  border-top-left-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+}
+
+.__accept {
+  background-color: #38c172;
+}
+
+.__reject {
+  background-color: #e3342f;
 }
 
 @media only screen and (min-width: 1300px) {
@@ -16786,6 +16816,22 @@ body {
   #vehicles .__btn-vig {
     text-align: left !important;
   }
+
+  .navbar-nav .__nav-item {
+    display: block;
+    width: 80%;
+    margin: 0;
+    padding: 0.5rem 0;
+    text-align: center;
+  }
+
+  .navbar-nav .__nav-item .btn {
+    width: 100%;
+  }
+
+  .navbar-nav .dropdown {
+    width: 80%;
+  }
 }
 
 @media only screen and (max-width: 490px) {
@@ -16806,6 +16852,25 @@ body {
   }
 }
 
+@media only screen and (max-width: 400px) {
+  #about .col-md-3 h4 {
+    font-size: 1.3rem;
+  }
+
+  #about .col-md-3 p {
+    font-size: 0.9rem;
+  }
+
+  .__violation-row {
+    align-items: center;
+    justify-content: center;
+  }
+
+  .__violation-row .__violation-info {
+    flex-direction: column;
+  }
+}
+
 @media only screen and (max-width: 300px) {
   #header .__header-box h2 {
     font-size: 1.2rem;
@@ -16813,23 +16878,6 @@ body {
 
   #header .__header-box h6 {
     font-size: 0.7rem;
-  }
-}
-
-@media only screen and (max-width: 400px) {
-  .container {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-  }
-
-  #about .col-md-3 h4 {
-    font-size: 1.3rem;
-  }
-
-  #about .col-md-3 p {
-    font-size: 0.9rem;
   }
 }
 

@@ -38,7 +38,7 @@
     <section id="form">
         <div class="container d-flex flex-column justify-content-center align-items-center">
             <h2 class="text-center font-weight-light">Napíšte nám :)</h2>
-            <div class="col-8">
+            <div class="col-sm-12 col-8-md">
                 <form>
                     <div class="form-group">
                       <label for="useremail">Emailová adresa</label>

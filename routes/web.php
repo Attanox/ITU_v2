@@ -40,4 +40,9 @@ Route::prefix('clerk')->group(function() {
     Route::get('/', 'ClerkController@index')->name('clerk.dashboard');
 });
 
+Route::get('/search',function(){ return redirect()->back(); });
 Route::post('/search','ClerkController@searchFunction');
+Route::get('/clerk/accept', function(){ return redirect()->back(); });
+Route::post('/clerk/accept','ClerkController@acceptRequest');
+Route::get('/clerk/reject', function(){ return redirect()->back(); });
+Route::post('/clerk/reject','ClerkController@rejectRequest');

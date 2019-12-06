@@ -21,21 +21,21 @@
                 <!-- Authentication Links -->
                 @guest
                     @if (Route::has('register'))
-                        <li class="nav-item m-1">
+                        <li class="__nav-item nav-item m-1">
                             <a class="btn __btn-info text-white nav-link" href="{{ route('register') }}">{{ __('Registrácia') }}</a>
                         </li>
                     @endif
-                    <li class="nav-item m-1">
+                    <li class="__nav-item nav-item m-1">
                         <a class="btn __btn-outline-info nav-link __hover-white" href="{{ route('login') }}">{{ __('Prihlásenie') }}</a>
                     </li>
                 @else
-                    <li class="nav-item mr-2">
+                    <li class="__nav-item nav-item mr-2">
                         <button type="button" class="btn btn-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#buyvignette">
                             Kúpiť známku
                         </button>
                         @include('modals.buyvignette')
                     </li>
-                    <li class="nav-item mr-2">
+                    <li class="__nav-item nav-item mr-2">
                         <button type="button" class="btn btn-primary mt-2 mb-2 float-right" data-toggle="modal" data-target="#payviolation">
                             Zaplatiť priestupky
                         </button>

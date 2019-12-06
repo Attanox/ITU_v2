@@ -12,8 +12,8 @@
         <div class="modal-body border-0">
             {!! Form::open(['action' => 'PagesController@payviolation', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             @foreach ($data['violations'] as $violation)
-                    <div class="row text-white border-bottom border-secondary">
-                        <div class="text-center col py-2 px-0 d-flex justify-content-around">
+                    <div class="__violation-row row text-white border-bottom border-secondary">
+                        <div class="__violation-info text-center col py-2 px-0 d-flex justify-content-around">
                             <div>
                                 <strong>ID:&nbsp;&nbsp;</strong><span>{{ $violation->id }}</span>
                             </div>

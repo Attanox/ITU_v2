@@ -78,16 +78,57 @@ class ClerkController extends Controller
     }
 
     public function searchFunction(Request $request){
+        // dd($request->all()); // DEBUG
         $q = $request->input( 'q' );
-        $user = DB::table('users')->where('name','LIKE','%'.$q.'%')->get();
+        $type = $request->input( 'type' );
+
+        if ( $type == "0") {
+            $vehicle = DB::table('vehicles')->where('plate','LIKE','%'.$q.'%')->get();
+            $user = [];
+        }
+        else if ( $type == "1" ) {
+            $user = DB::table('users')->where('name','LIKE','%'.$q.'%')->get();
+            $vehicle = [];
+        }
 
         $pending = DB::table('vehicles')
                         ->where('registered', '=', 'pending')
                         ->get();
 
+        if ( $q == null )
+            return view('clerk')->with('pending', $pending);
+
         if(count($user) > 0)
             return view('clerk')->with('user', $user)->with('pending', $pending);
+        else if(count($vehicle) > 0)
+            return view('clerk')->with('vehicle', $vehicle)->with('pending', $pending);
         else
             return view ('clerk')->with('failure','Nenašli sme nič skúste znova !')->with('pending', $pending);
+    }
+
+    function acceptRequest(Request $request) {
+        $pending = Vehicle::find($request->input('p_id'));
+
+        $pending->registered = 'registered';
+        $pending->save();
+
+        $pending = DB::table('vehicles')
+                        ->where('registered', '=', 'pending')
+                        ->get();
+        
+        return view('clerk')->with('pending', $pending);
+    }
+
+    function rejectRequest(Request $request) {
+        $pending = Vehicle::find($request->input('p_id'));
+
+        $pending->registered = "not registered";
+        $pending->save();
+
+        $pending = DB::table('vehicles')
+                        ->where('registered', '=', 'pending')
+                        ->get();
+        
+        return view('clerk')->with('pending', $pending);
     }
 }
