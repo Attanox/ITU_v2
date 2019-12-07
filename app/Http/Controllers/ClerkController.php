@@ -7,6 +7,7 @@ use Auth;
 use DB;
 use App\Vehicle;
 use App\Violation;
+use App\User;
 
 class ClerkController extends Controller
 {
@@ -88,6 +89,18 @@ class ClerkController extends Controller
         }
         else if ( $type == "1" ) {
             $user = DB::table('users')->where('name','LIKE','%'.$q.'%')->get();
+            if ( count($user) == 0 ) {
+                $user = DB::table('users')->where('surname','LIKE','%'.$q.'%')->get();
+            }
+            if ( count($user) == 0 && strpos($q, ' ') !== false) {
+                $q = explode(' ', $q);
+                if ( count($q) == 2 ) {
+                    $user = DB::table('users')
+                            ->where('name','LIKE','%'.$q[0].'%')
+                            ->where('surname','LIKE','%'.$q[1].'%')
+                            ->get();
+                }
+            }
             $vehicle = [];
         }
 
@@ -129,6 +142,24 @@ class ClerkController extends Controller
                         ->where('registered', '=', 'pending')
                         ->get();
         
+        return view('clerk')->with('pending', $pending);
+    }
+
+    function deleteRequest(Request $request) {
+        $who = $request->input('who');
+
+        if ( $who == 'citizen' ) {
+            $user_to_delete = User::find($request->input('to_delete'));
+            $user_to_delete->delete();
+        } else if ( $who == 'vehicle' ) {
+            $vehicle_to_delete = Vehicle::find($request->input('to_delete'));
+            $vehicle_to_delete->delete();
+        }
+        
+        $pending = DB::table('vehicles')
+                        ->where('registered', '=', 'pending')
+                        ->get();    
+
         return view('clerk')->with('pending', $pending);
     }
 }

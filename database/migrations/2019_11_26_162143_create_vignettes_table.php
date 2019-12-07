@@ -20,7 +20,7 @@ class CreateVignettesTable extends Migration
             $table->date('valid_until');
 
             $table->unsignedBigInteger('vehicle_id');
-            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 

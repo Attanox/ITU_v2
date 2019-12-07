@@ -16747,6 +16747,13 @@ body {
   max-width: 49%;
 }
 
+.price {
+  background-color: #efaac4;
+  border-radius: 50%;
+  width: 3.5rem;
+  height: 3.5rem;
+}
+
 .__rounded-left-0 {
   border-top-left-radius: 0 !important;
   border-bottom-left-radius: 0 !important;

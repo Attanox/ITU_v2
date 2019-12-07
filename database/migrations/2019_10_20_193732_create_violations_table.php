@@ -17,13 +17,14 @@ class CreateViolationsTable extends Migration
             $table->bigIncrements('id');
             $table->date('happened_on');
             $table->string('happened_at', 100);
+            $table->integer('price');
             $table->timestamps();
 
             $table->unsignedBigInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             
             $table->unsignedBigInteger('vehicle_id');
-            $table->foreign('vehicle_id')->references('id')->on('vehicles');
+            $table->foreign('vehicle_id')->references('id')->on('vehicles')->onDelete('cascade');
         });
     }
 

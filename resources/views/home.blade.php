@@ -84,12 +84,19 @@
                         @if (count($data['violations']) > 0)
                             @foreach ($data['violations'] as $violation)
                                 <div class="__thirds col-sm-12 col-md-4 bg-dark text-white p-4 mb-1 mr-1">
-                                    <div class="mb-1">
-                                        <strong>ID: </strong><span>{{ $violation->id }}</span>
-                                    </div>
-                                    <div class="mb-3">
-                                        <span class="small font-weight-bold">Vozidlo: </span>
-                                        <span class="small">{{ $violation->vehicle_name }}</span>
+                                    <div class="w-100 d-flex justify-content-between">
+                                        <div>
+                                            <div class="mb-1">
+                                                <strong>ID: </strong><span>{{ $violation->id }}</span>
+                                            </div>
+                                            <div class="mb-3">
+                                                <span class="small font-weight-bold">Vozidlo: </span>
+                                                <span class="small">{{ $violation->vehicle_name }}</span>
+                                            </div>
+                                        </div>
+                                        <div class="price d-flex justify-content-center align-items-center p-2">
+                                            <span class="lead text-white">{{ $violation->price }}€</span>
+                                        </div>
                                     </div>
                                     <div class="__dates">
                                         <div class="mr-2">

@@ -25,14 +25,17 @@
                     <thead>
                         <tr>
                             <th>Meno</th>
+                            <th>Priezvisko</th>
                             <th>Č. občianskeho preukazu</th>
                         </tr>
                     </thead>
                     <tbody>
                         @foreach($user as $u)
-                        <tr>
+                        <tr id="citizen{{ $u->id }}">
                             <td>{{$u->name}}</td>
+                            <td>{{$u->surname}}</td>
                             <td>{{$u->op}}</td>
+                            <td>{{ Form::button('<i class="fas fa-trash-alt p-1"></i>', ['class' => 'btn btn-danger btn-sm', 'title' => "Odstrániť", 'onclick' => 'sendDelete(' . $u->id . ', "citizen")'] ) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -49,9 +52,10 @@
                     </thead>
                     <tbody>
                         @foreach($vehicle as $v)
-                        <tr>
+                        <tr id="vehicle{{ $v->id }}">
                             <td>{{$v->plate}}</td>
                             <td>{{$v->registered}}</td>
+                            <td>{{ Form::button('<i class="fas fa-trash-alt p-1"></i>', ['class' => 'btn btn-danger btn-sm', 'title' => "Odstrániť", 'onclick' => 'sendDelete(' . $v->id . ', "vehicle")'] ) }}</td>
                         </tr>
                         @endforeach
                     </tbody>
@@ -108,6 +112,28 @@
         function(data, status){
             $('#pending'+pending_id).remove();
         });
+    }
+
+    function sendDelete( to_delete, who ) {
+        if ( confirm('Ste si istý odstránením záznamu?') ) {
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }   
+            });
+            $.post("/clerk/delete",
+            {
+                to_delete: to_delete,
+                who: who,
+            },
+            function(data, status){
+                if ( who == 'citizen' ) {
+                    $('#citizen'+to_delete).remove();
+                } else if ( who == 'vehicle' ) {
+                    $('#vehicle'+to_delete).remove();
+                }
+            });
+        }
     }
 </script>
 @endsection
