@@ -42,7 +42,7 @@ Route::prefix('clerk')->group(function() {
 
 
 Route::get('/search',function(){ return redirect()->back(); });
-Route::post('/search','ClerkController@searchFunction');
+Route::post('/clerk','ClerkController@searchFunction');
 
 Route::get('/clerk/accept', function(){ return redirect()->back(); });
 Route::post('/clerk/accept','ClerkController@acceptRequest');
