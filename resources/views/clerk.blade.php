@@ -1,7 +1,18 @@
+{{-- Dashboard of clerks alloving them to search threw database of users and their wehicles, also erasing them and iserting violations/tickets --}}
 @extends('layouts.clerk-app')
 
 @section('content')
-<div class="container py-3">
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.7.2/animate.min.css">
+</head>
+
+<style>
+    .__SearchButton{ background-color: #1B3B6F; }
+    
+    .__ViolationCard{ background-color: #1B3B6F; }
+</style>
+
+<div class="container py-3 myClerkContent">
     <div class="d-flex flex-row justify-content-center">
         <div class="col-12 col-lg-8 ">
             @if (session('status'))
@@ -9,17 +20,43 @@
                     {{ session('status') }}
                 </div>
             @endif
-            
-            <h3>Hello Admin</h3>
+            <div class="row justify-content-center">
+                <div class="col-sm-12 col-md-9 mb-3">
+                    <div class="animated fadeInDown card shadow text-center">
+                        <div class="__card-header"></div>
+                        <div class="card-body text-white __ViolationCard">
 
+                            {{-- Form for creating violations/tickets --}}
+                            <h4>Vložiť nový priestupok</h4>
+                            {!! Form::open(['action' => 'ClerkController@addViolation', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+                            <div class="form-group">  
+                                {!! Form::label('place', 'Place', []) !!}
+                                {!! Form::text('place', '', []) !!}
+                            </div>
+                            <div class="form-group">
+                                {!! Form::label('vehicle', 'Auto', []) !!}
+                                {!! Form::text('vehicle', '', []) !!}
+                            </div>  
+                            <div class="form-group">
+                                {!! Form::label('date', 'Date', []) !!}
+                                {!! Form::date('date', '', []) !!}
+                            </div>  
+                                {!! Form::submit('Submit', ['class' => 'btn btn-danger']) !!}
+                            {!! Form::close() !!}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {{-- Search bar with selection of types, drivers or cars --}}
             {!! Form::open(['action' => 'ClerkController@searchFunction', 'method' => 'POST', 'role' => 'search', 'enctype' => 'multipart/form-data']) !!}
                 <div class="input-group">
                     {!! Form::text('q', '', ['class' => 'form-control col-9', 'placeholder' => 'Search Users']) !!}
                     {!! Form::select('type', ['Vozidlá', 'Vodiči'], 1, ['class' => 'form-control col-3 rounded-0']) !!}
-                    {!! Form::submit('Search', ['class' => 'btn btn-primary __rounded-left-0 rounded-right']) !!}
+                    {!! Form::submit('Search', ['class' => 'btn __SearchButton btn-primary __rounded-left-0 rounded-right']) !!}
                 </div>
             {!! Form::close() !!}
 
+            {{-- Printing of search results into a table --}}
             @if(isset($user))
                 <table class="table table-striped">
                     <thead>
@@ -61,7 +98,8 @@
                     </tbody>
                 </table>
             @endif
-
+            
+            {{-- list of users or cars vaiting to get validated (accept and decline buttons) --}}
             @foreach ( $pending as $p )
                 <div id="pending{{ $p->id }}" class="w-100 d-flex align-items-center my-2 bg-white rounded p-2">
                     <p class="mr-auto my-auto">{{ $p->plate }}</p>
@@ -69,16 +107,6 @@
                     {{ Form::button('<i class="fas fa-trash-alt p-1"></i>', ['class' => 'btn btn-danger btn-sm', 'title' => "Zamietnuť", 'onclick' => 'sendReject(' . $p->id . ')'] ) }}
                 </div>
             @endforeach
-
-            {!! Form::open(['action' => 'ClerkController@addViolation', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
-                {!! Form::label('date', 'Date', []) !!}
-                {!! Form::date('date', '', []) !!}
-                {!! Form::label('place', 'Place', []) !!}
-                {!! Form::text('place', '', []) !!}
-                {!! Form::label('vehicle', 'Auto', []) !!}
-                {!! Form::text('vehicle', '', []) !!}
-                {!! Form::submit('Submit', ['class' => 'btn btn-danger']) !!}
-            {!! Form::close() !!}
         </div>
     </div>
 </div>
