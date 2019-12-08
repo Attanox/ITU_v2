@@ -1,3 +1,5 @@
+{{-- footer section --}}
+
 <section id="footer" class="__bg-main">
     <div class="container">
         <div class="main row">

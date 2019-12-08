@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal for showing status of vehicle -->
 <div class="modal fade" id="registeredModal" tabindex="-1" role="dialog" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content __bg-main">

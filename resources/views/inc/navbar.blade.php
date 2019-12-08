@@ -1,3 +1,5 @@
+{{-- navbar for citizens --}}
+
 <nav class="navbar navbar-expand-lg navbar-dark __bg-main mb-4">
     <div class="container">
         <a class="navbar-brand text-white" href="/">{{ config('app.name', 'Laravel') }}</a>

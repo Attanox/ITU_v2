@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal for displaying form with new registration for vehicle -->
 <div class="modal fade" id="newregistration" tabindex="-1" role="dialog" aria-labelledby="newregistrationLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content __bg-main">

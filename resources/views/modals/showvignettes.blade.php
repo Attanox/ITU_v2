@@ -1,5 +1,6 @@
   
-<!-- Modal -->
+<!-- Modal for showing bought vignettes -->
+{{-- added vehicle id for specific vehicle --}}
 <div class="modal fade" id="showvignettes{{ $vehicle->id }}" tabindex="-1" role="dialog" aria-labelledby="showvignettesLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content __bg-main">

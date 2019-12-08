@@ -1,3 +1,4 @@
+{{-- Dashboard for users showing them their vehicles and violations amongst other things --}}
 @extends('layouts.app')
 
 @section('content')
@@ -14,12 +15,13 @@
                     <h3 class="text-left mb-0">Vozidlá</h3><button type="button" class="btn btn-primary"  data-toggle="modal" data-target="#newregistration">Nová Evidencia</button>
                     @include('modals.newregistration')
                 </div>
-                
+                {{-- if user has any vehicles we display them --}}
                 @if (is_object($data['vehicles']))
                     @if (count($data['vehicles']) > 0)
                         @foreach ($data['vehicles'] as $vehicle)
                             <div class="row d-flex justify-content-center text-white bg-dark px-2 py-4 mb-2">
                                 <div class=" col-sm-12 col-md-12 col-lg-1">
+                                    {{-- status of vehicle --}}
                                     @if ( $vehicle->registered == 'registered')
                                         <div class="status reg mb-2" title="Evidované" data-toggle="modal" data-target="#registeredModal">
                                             <i class="fas fa-check"></i>
@@ -57,6 +59,7 @@
                                         </div>
                                     </div>
                                 </div>
+                                {{-- possibility of showing vignettes --}}
                                 <div class="__btn-vig col-sm-12 col-md-6 col-lg-4 text-right">
                                     <button type="button" class="btn bnt-sm btn-light" data-toggle="modal" data-target="#showvignettes{{ $vehicle->id }}">
                                         Zakúpené Známky
@@ -78,7 +81,7 @@
                 <div class="row mb-2">
                     <h3 class="text-left  mb-0">Priestupky</h3>
                 </div>
-                
+                {{-- if he has any violations we display them --}}
                 <div class="row">
                     @if (is_object($data['violations']))
                         @if (count($data['violations']) > 0)

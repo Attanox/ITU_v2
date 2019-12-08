@@ -1,4 +1,4 @@
-<!-- Modal -->
+<!-- Modal for displaying simple thank you message -->
 <div class="modal fade" id="thankyou" tabindex="-1" role="dialog" aria-labelledby="thankyou" aria-hidden="true">
     <div class="modal-dialog __bg-main" role="document">
         <div class="modal-content __bg-main">

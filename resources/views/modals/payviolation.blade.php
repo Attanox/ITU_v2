@@ -1,5 +1,5 @@
   
-<!-- Modal -->
+<!-- Modal for showing violations user can pay for -->
 <div class="modal fade" id="payviolation" tabindex="-1" role="dialog" aria-labelledby="payviolationLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content __bg-main">
@@ -21,6 +21,7 @@
                                 <strong>Miesto:&nbsp;&nbsp;</strong><span class="">{{ $violation->happened_at }}</span>
                             </div>
                             <div>
+                                {{-- using carbon to display time properly --}}
                                 <strong>Dňa:&nbsp;&nbsp;</strong><span class="">{{ \Carbon\Carbon::parse($violation->happened_on)->format('d/m/Y')}}</span>
                             </div>
                         </div>

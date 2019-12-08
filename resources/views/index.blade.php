@@ -1,3 +1,5 @@
+{{-- Home page -- first thing that user sees --}}
+
 @extends('layouts.app')
 
 @section('content')
@@ -72,27 +74,33 @@
                 if (callNow) func.apply(context, args);
             };
         };
-
+        // grabbing elements we want to animate
         var elementsToShow = document.querySelectorAll('#about .col-md-3');
+        // function for sliding
         function checkSlide() {
             elementsToShow.forEach(el => {
                 // half way through the image
                 const slideInAt = (window.scrollY + window.innerHeight) - el.offsetHeight / 2;
                 // bottom of the image
                 const imageBottom = el.offsetTop + el.offsetHeight;
+                // do we see half
                 const isHalfShown = slideInAt > el.offsetTop;
+                // and it is not scrolled past half
                 const isNotScrolledPast = window.scrollY < imageBottom;
+                // add class
                 if (isHalfShown && isNotScrolledPast) {
                     el.classList.add('is-visible');
                 } else {
                     el.classList.remove('is-visible');
                 }
             });
-        }                           
+        }                     
+        // listen on scroll   
         window.addEventListener("scroll", function(){
             debounce(checkSlide());
         });
 
+        // fake comment sending form
         document.querySelector('#form .__btn-highlight').addEventListener('click', function(e) {
             e.preventDefault();
             document.querySelector('#useremail').value = '';

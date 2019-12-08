@@ -1,3 +1,5 @@
+{{-- Messages that are displayed when somethin goes wrong or right --}}
+
 @if(count($errors) > 0)
     @foreach(array_unique($errors->all()) as $error)
         <div class="alert m-3 alert-dismissible fade show alert-danger">

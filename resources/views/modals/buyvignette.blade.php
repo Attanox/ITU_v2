@@ -1,5 +1,5 @@
   
-<!-- Modal -->
+<!-- Modal for displaying vehicles you can buy vignettes for -->
 <div class="modal fade" id="buyvignette" tabindex="-1" role="dialog" aria-labelledby="buyvignetteLabel" aria-hidden="true">
     <div class="modal-dialog" role="document">
         <div class="modal-content __bg-main">
@@ -12,6 +12,7 @@
         <div class="modal-body text-white border-0">
         {!! Form::open(['action' => 'PagesController@buyvignette', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             @foreach ($data['vehicles'] as $vehicle)
+                {{-- if the vehicle is registered it can get vignette --}}
                 @if ($vehicle->registered == 'registered')
                     <div class="row border-bottom border-secondary">
                         <div class="text-center col py-2 px-0">

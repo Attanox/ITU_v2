@@ -27,6 +27,11 @@ class PagesController extends Controller
         return $data;
     }
 
+    /**
+     * Gets dahsboard with users vehicles and violations
+     * 
+     * @return view
+     */
     public function index() {
         if (Auth::check()) {
             $data = $this->getData();
@@ -36,7 +41,11 @@ class PagesController extends Controller
         }
     }
     
-
+    /**
+     * Process of form values and returning violations to be displayed
+     * 
+     * @return view
+     */
     public function payviolation(Request $request) {
         $rules = [
             'violations_to_pay' => 'required',
@@ -58,6 +67,11 @@ class PagesController extends Controller
         return view('payment')->with('paymentData', $paymentData)->with('data', $data);
     }
 
+    /**
+     * Process of form values and returning vignettes to be displayed
+     * 
+     * @return view
+     */
     public function buyvignette(Request $request) {
         $rules = [
             'vignettes_to_buy' => 'required',
@@ -79,6 +93,11 @@ class PagesController extends Controller
         return view('vig')->with('paymentData', $paymentData)->with('data', $data);
     }
 
+    /**
+     * "Paying" for violations
+     * 
+     * @return redirect to home
+     */
     public function payForViolations(Request $request) {
         // dd($request->input('to_pay'));
         foreach ($request->input('to_pay') as $key => $id) {
@@ -89,6 +108,11 @@ class PagesController extends Controller
         return redirect('/home')->with('success', 'Priestupky sú zaplatené.');
     }
 
+    /**
+     * "Paying" for vignettes
+     * 
+     * @return redirect to home
+     */
     public function payForVignettes(Request $request) {
         // dd($request->all());
         for ($i = 0; $i < count($request->input('to_buy')) - 2; $i += 3) {
